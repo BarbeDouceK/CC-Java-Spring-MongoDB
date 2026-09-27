@@ -3,6 +3,7 @@ package fr.batou.rest_webservice_java_mongo.modeles;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,5 +51,61 @@ public class Consultation {
         this.date = date;
         this.identifiantPatient = identifiantPatient;
         this.identifiantMedecin = identifiantMedecin;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(String identifiant) {
+        this.identifiant = identifiant;
+    }
+
+    public String getIdentifiantPatient() {
+        return identifiantPatient;
+    }
+
+    public void setIdentifiantPatient(String identifiantPatient) {
+        this.identifiantPatient = identifiantPatient;
+    }
+
+    public String getIdentifiantMedecin() {
+        return identifiantMedecin;
+    }
+
+    public void setIdentifiantMedecin(String identifiantMedecin) {
+        this.identifiantMedecin = identifiantMedecin;
+    }
+
+    public List<Prescription> getPrescriptions() {
+        return prescriptions;
+    }
+
+    public void setPrescriptions(List<Prescription> prescriptions) {
+        this.prescriptions = prescriptions;
+    }
+
+    public String getIdentifiantDocumentAttache() {
+        return identifiantDocumentAttache;
+    }
+
+    public void setIdentifiantDocumentAttache(String identifiantDocumentAttache) {
+        this.identifiantDocumentAttache = identifiantDocumentAttache;
     }
 }
