@@ -3,7 +3,6 @@ package fr.batou.rest_webservice_java_mongo.modeles;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 @Document(collection = "consultations")
 public class Consultation {
     @Id
-    private String identifiant;
     private String numero;
     private LocalDateTime date;
 
@@ -25,8 +23,7 @@ public class Consultation {
     private String identifiantDocumentAttache;
 
     // Consultation complète constructeur tous les params
-    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions, String identifiantDocumentAttache) {
-        this.identifiant = identifiant;
+    public Consultation(String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions, String identifiantDocumentAttache) {
         this.numero = numero;
         this.date = date;
         this.identifiantPatient = identifiantPatient;
@@ -35,8 +32,7 @@ public class Consultation {
         this.identifiantDocumentAttache = identifiantDocumentAttache;
     }
     // Consultation sans fichier Joint
-    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions) {
-        this.identifiant = identifiant;
+    public Consultation(String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions) {
         this.numero = numero;
         this.date = date;
         this.identifiantPatient = identifiantPatient;
@@ -45,8 +41,7 @@ public class Consultation {
     }
 
     // COnsultation sans Prescription ?? maybe no need
-    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin) {
-        this.identifiant = identifiant;
+    public Consultation(String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin) {
         this.numero = numero;
         this.date = date;
         this.identifiantPatient = identifiantPatient;
@@ -67,14 +62,6 @@ public class Consultation {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
-    }
-
-    public String getIdentifiant() {
-        return identifiant;
-    }
-
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
     }
 
     public String getIdentifiantPatient() {
