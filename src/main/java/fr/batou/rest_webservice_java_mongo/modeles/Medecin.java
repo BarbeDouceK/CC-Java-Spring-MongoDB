@@ -8,14 +8,14 @@ public class Medecin {
     @Id
     private String identifiant;
     private String matricule;
-    private String nom;
+    private String nomMED;
 
     public String getNom() {
-        return nom;
+        return nomMED;
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        this.nomMED = nom;
     }
 
     public String getIdentifiant() {

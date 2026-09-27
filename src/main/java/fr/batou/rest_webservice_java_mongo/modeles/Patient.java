@@ -8,7 +8,7 @@ public class Patient {
     @Id
     private String identifiant;
     private String numeroSecuriteSociale;
-    private String nom;
+    private String nomPAT;
 
     public String getIdentifiant() {
         return identifiant;
@@ -27,10 +27,10 @@ public class Patient {
     }
 
     public String getNom() {
-        return nom;
+        return nomPAT;
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        this.nomPAT = nom;
     }
 }
