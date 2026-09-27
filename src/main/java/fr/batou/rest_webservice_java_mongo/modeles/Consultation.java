@@ -10,6 +10,7 @@ import java.util.List;
 @Document(collection = "consultations")
 public class Consultation {
     @Id
+    private String identifiant;
     private String numero;
     private LocalDateTime date;
 
@@ -23,7 +24,8 @@ public class Consultation {
     private String identifiantDocumentAttache;
 
     // Consultation complète constructeur tous les params
-    public Consultation(String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions, String identifiantDocumentAttache) {
+    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions, String identifiantDocumentAttache) {
+        this.identifiant = identifiant;
         this.numero = numero;
         this.date = date;
         this.identifiantPatient = identifiantPatient;
@@ -32,7 +34,8 @@ public class Consultation {
         this.identifiantDocumentAttache = identifiantDocumentAttache;
     }
     // Consultation sans fichier Joint
-    public Consultation(String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions) {
+    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions) {
+        this.identifiant = identifiant;
         this.numero = numero;
         this.date = date;
         this.identifiantPatient = identifiantPatient;
@@ -41,11 +44,20 @@ public class Consultation {
     }
 
     // COnsultation sans Prescription ?? maybe no need
-    public Consultation(String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin) {
+    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin) {
+        this.identifiant = identifiant;
         this.numero = numero;
         this.date = date;
         this.identifiantPatient = identifiantPatient;
         this.identifiantMedecin = identifiantMedecin;
+    }
+
+    public String getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(String identifiant) {
+        this.identifiant = identifiant;
     }
 
     public String getNumero() {
