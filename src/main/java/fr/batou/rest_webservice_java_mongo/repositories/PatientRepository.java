@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface PatientRepository extends MongoRepository<Patient, String> {
     // Recherche optionnelle par nom ou numéro de sécu (en ignorant la casse)
     @Query("{ '$or': [ { 'nom': { '$regex': ?0, '$options': 'i' } }, { 'numeroSecuriteSociale': { '$regex': ?0, '$options': 'i' } } ] }")
-    Page<Patient> rechercherParNomOuNumero(String motCle, Pageable pagination);
+    Page<Patient> rechercherParNomOuNumero(String recherche, Pageable pagination);
 }
