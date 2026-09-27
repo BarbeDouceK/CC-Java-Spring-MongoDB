@@ -1,5 +1,7 @@
 package fr.batou.rest_webservice_java_mongo.modeles;
 
+import jakarta.persistence.Entity;
+
 public class Prescription {
     private String identifiantMedicament;
     private String libelleMedicament;
