@@ -2,6 +2,7 @@ package fr.batou.rest_webservice_java_mongo.modeles;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,42 +15,43 @@ public class Consultation {
     private String numero;
     private LocalDateTime date;
 
-    private String identifiantPatient;
-    private String identifiantMedecin;
+    // Relation : Assiste (1,1) -> Référence vers le Patient
+    @DocumentReference(lazy = true)
+    private Patient patient;
 
-    // Liste des médicaments prescrits
+    // Relation : Donne (1,1) -> Référence vers le Médecin
+    @DocumentReference(lazy = true)
+    private Medecin medecin;
+
+    // Relation : Prescrit (0,n) -> Liste embarquée
     private List<Prescription> prescriptions = new ArrayList<>();
 
     // Identifiant du fichier joint
     private String identifiantDocumentAttache;
 
-    // Consultation complète constructeur tous les params
-    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions, String identifiantDocumentAttache) {
+    //Constructeur complet
+    public Consultation(String identifiant, String numero, LocalDateTime date, Patient patient, List<Prescription> prescriptions, Medecin medecin, String identifiantDocumentAttache) {
         this.identifiant = identifiant;
         this.numero = numero;
         this.date = date;
-        this.identifiantPatient = identifiantPatient;
-        this.identifiantMedecin = identifiantMedecin;
+        this.patient = patient;
         this.prescriptions = prescriptions;
+        this.medecin = medecin;
         this.identifiantDocumentAttache = identifiantDocumentAttache;
     }
-    // Consultation sans fichier Joint
-    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin, List<Prescription> prescriptions) {
-        this.identifiant = identifiant;
-        this.numero = numero;
-        this.date = date;
-        this.identifiantPatient = identifiantPatient;
-        this.identifiantMedecin = identifiantMedecin;
-        this.prescriptions = prescriptions;
+
+    // COnstructeur Vide
+    public Consultation() {
     }
 
-    // COnsultation sans Prescription ?? maybe no need
-    public Consultation(String identifiant, String numero, LocalDateTime date, String identifiantPatient, String identifiantMedecin) {
+    // Sans pièce jointe
+    public Consultation(String identifiant, String numero, LocalDateTime date, Patient patient, Medecin medecin, List<Prescription> prescriptions) {
         this.identifiant = identifiant;
         this.numero = numero;
         this.date = date;
-        this.identifiantPatient = identifiantPatient;
-        this.identifiantMedecin = identifiantMedecin;
+        this.patient = patient;
+        this.medecin = medecin;
+        this.prescriptions = prescriptions;
     }
 
     public String getIdentifiant() {
@@ -76,20 +78,20 @@ public class Consultation {
         this.date = date;
     }
 
-    public String getIdentifiantPatient() {
-        return identifiantPatient;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setIdentifiantPatient(String identifiantPatient) {
-        this.identifiantPatient = identifiantPatient;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public String getIdentifiantMedecin() {
-        return identifiantMedecin;
+    public Medecin getMedecin() {
+        return medecin;
     }
 
-    public void setIdentifiantMedecin(String identifiantMedecin) {
-        this.identifiantMedecin = identifiantMedecin;
+    public void setMedecin(Medecin medecin) {
+        this.medecin = medecin;
     }
 
     public List<Prescription> getPrescriptions() {
